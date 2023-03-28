@@ -29,6 +29,7 @@ cloudinary.config({
 
 // db
 const connectDB = require('./db/connect')
+connectDB()
 
 // middleware
 const notFoundMiddlewareError = require('./middleware/notFoundMiddleware')
@@ -79,16 +80,7 @@ app.use(notFoundMiddlewareError)
 app.use(errohMiddlewareError)
 
 
+app.listen(port, () => {
+    console.log('E-COMMERCE API server is running')
+})
 
-const start = async() => {
-    try {
-        await connectDB(process.env.MONGO_URI)
-        app.listen(port, () => {
-            console.log('E-COMMERCE API')
-        })
-    } catch (error) {
-        console.log('unable to connect to db');
-    }
-}
-
-start()
