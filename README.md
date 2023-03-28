@@ -12,3 +12,5 @@ E-Commerce api for developers
 
 $ npm run dev
 $nodemon app.js
+* To run the base url for documentation
+http://localhost:5000/api-docs/#/
