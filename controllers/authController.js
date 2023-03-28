@@ -9,7 +9,7 @@ const register = async(req, res) => {
     const {name, email, password} = req.body;
 
     const isEmailAlreadyExist = await User.findOne({email})
-
+    console.log({...req.body})
     if(isEmailAlreadyExist){
     
         throw new customError.BadRequestError('email already exist')
