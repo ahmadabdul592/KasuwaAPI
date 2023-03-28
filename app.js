@@ -81,6 +81,6 @@ app.use(errohMiddlewareError)
 
 
 app.listen(port, () => {
-    console.log('E-COMMERCE API server is running')
+    console.log('KASUWA API server is running')
 })
 

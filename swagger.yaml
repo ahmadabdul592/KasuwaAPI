@@ -1,10 +1,10 @@
 openapi: 3.0.0
 info:
-  title: E-COMMERCE-API
+  title: KASUWA-API
   contact: {}
   version: '1.0'
 servers:
-- url: https://hussayn-node-ecommerce-api.onrender.com/api/v1
+- url: https://kasuwa-node-ecommerce-api.onrender.com/api/v1
   variables: {}
 paths:
   /auth/register:
@@ -22,12 +22,12 @@ paths:
               allOf:
               - $ref: '#/components/schemas/REGISTERREQUEST'
               - example:
-                  name: hussaini
-                  email: hussaini@gmail.com
+                  name: ahmad
+                  email: ahmad@gmail.com
                   password: secret1
             example:
-              name: hussaini
-              email: hussaini@gmail.com
+              name: ahmad
+              email: ahmad@gmail.com
               password: secret1
         required: true
       responses:
