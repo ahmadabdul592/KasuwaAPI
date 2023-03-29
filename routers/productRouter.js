@@ -9,8 +9,7 @@ const {
     getSingleProduct,
     getAllProducts,
     updateProduct,
-    deleteProduct,
-    uploadImage
+    deleteProduct
 } = require('../controllers/productController')
 
 
@@ -20,9 +19,9 @@ router
 .get(getAllProducts)
 
 
-router
-.route('/upload')
-.post([auth, authorizePermissions('admin')],uploadImage)
+// router
+// .route('/upload')
+// .post([auth, authorizePermissions('admin')],uploadImage)
 
 router
 .route('/:id')

@@ -6,8 +6,26 @@ const fs = require('fs')
 
 
 const createProduct = async(req, res) => {
+    const result = await cloudinary.uploader.upload(
+        req.files.image.tempFilePath,
+        {
+            use_filename: true,
+            folder: 'upload-image2'
+        }
+    )
+    console.log(result);
+    fs.unlinkSync( req.files.image.tempFilePath)
+    // return res.status(StatusCodes.OK).json({image: {src: result.secure_url}})
    req.body.user = req.user.userId;
-   const product = await Product.create(req.body)
+   const product = await Product.create({
+    name: req.body.name,
+    price: req.body.price,
+    description: req.body.description,
+    image:  result.secure_url,
+    category: req.body.category,
+    company: req.body.company,
+    user: req.user.userId
+   })
 
    res.status(StatusCodes.CREATED).json({product})
 }
@@ -61,18 +79,18 @@ const deleteProduct = async(req, res) => {
 }
 
 
-const uploadImage = async(req, res) => {
-    const result = await cloudinary.uploader.upload(
-        req.files.image.tempFilePath,
-        {
-            use_filename: true,
-            folder: 'upload-image2'
-        }
-    )
-    console.log(result);
-    fs.unlinkSync( req.files.image.tempFilePath)
-    return res.status(StatusCodes.OK).json({image: {src: result.secure_url}})
-}
+// const uploadImage = async(req, res) => {
+//     const result = await cloudinary.uploader.upload(
+//         req.files.image.tempFilePath,
+//         {
+//             use_filename: true,
+//             folder: 'upload-image2'
+//         }
+//     )
+//     console.log(result);
+//     fs.unlinkSync( req.files.image.tempFilePath)
+//     return res.status(StatusCodes.OK).json({image: {src: result.secure_url}})
+// }
 
 module.exports = {
     createProduct,
@@ -80,6 +98,5 @@ module.exports = {
     getAllProducts,
     updateProduct,
     deleteProduct,
-    updateProduct,
-    uploadImage
+    updateProduct
 }
